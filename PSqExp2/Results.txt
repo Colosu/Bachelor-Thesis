@@ -1,0 +1,5 @@
+| Machine | #states | Pearson correlation PSq | Spearman correlation PSq | Pearson correlation Sq | Spearman correlation Sq |
+M_{1} & 43 & -0.364053 & -0.523099 & -0.364053 & -0.523099\\
+\hline
+M_{2} & 40 & 0.149045 & 0.00943863 & 0.167885 & 0.0346083\\
+\hline

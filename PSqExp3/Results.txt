@@ -1,0 +1,5 @@
+| Machine | #states | Pearson correlation PSq | Spearman correlation PSq | Pearson correlation Sq | Spearman correlation Sq |
+M & 43 & -nan & -nan & -nan & -nan\\
+\hline
+M & 43 & -nan & -nan & -nan & -nan\\
+\hline

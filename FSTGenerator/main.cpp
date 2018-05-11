@@ -14,11 +14,11 @@
 using namespace std;
 
 #define NREP 500
-#define MAX_STATES 50
+#define MAX_STATES 25
 #define MIN_STATES 25
-#define MAX_TRANSITIONS 2 //PER STATE
-#define MIN_TRANSITIONS 1 //PER STATE
-#define NCHARS 2
+#define MAX_TRANSITIONS 5 //PER STATE
+#define MIN_TRANSITIONS 5 //PER STATE
+#define NCHARS 5
 #define MIN_CHAR 65
 
 
@@ -41,9 +41,9 @@ int main() {
 
 		command = "mkdir test" + to_string(I+1);
 		system(command.c_str());
-		command = "cp ascii.syms test" + to_string(I+1) + "/isyms.txt";
+		command = "cp ascii.syms test" + to_string(I+1) + "/isyms.syms";
 		system(command.c_str());
-		command = "cp ascii.syms test" + to_string(I+1) + "/osyms.txt";
+		command = "cp ascii.syms test" + to_string(I+1) + "/osyms.syms";
 		system(command.c_str());
 
 		ofile = "test" + to_string(I+1) + "/graph.fst";
@@ -68,7 +68,7 @@ int main() {
 				}
 
 				if (ntransitions == 0) {
-					*OFile << to_string(i) << " 1" << endl;
+					*OFile << to_string(i) << endl;
 				} else {
 
 					for (int j = 0; j < NCHARS; j++) {
@@ -83,7 +83,7 @@ int main() {
 					inputs[input - MIN_CHAR] = 1;
 					output = MIN_CHAR + (rand() % NCHARS);
 
-					*OFile << to_string(i) << " " << to_string(i + 1) << " " << (char)input << " " << (char)output << " 1" << endl;
+					*OFile << to_string(i) << " " << to_string(i + 1) << " " << (char)input << " " << (char)output << endl;
 
 					for (int j = 1; j < ntransitions; j++) {
 
@@ -98,7 +98,7 @@ int main() {
 						}
 						inputs[input - MIN_CHAR] = 1;
 						output = MIN_CHAR + (rand() % NCHARS);
-						*OFile << to_string(i) << " " << to_string(nextstate) << " " << (char)input << " " << (char)output << " 1" << endl;
+						*OFile << to_string(i) << " " << to_string(nextstate) << " " << (char)input << " " << (char)output << endl;
 					}
 				}
 			}
@@ -106,11 +106,14 @@ int main() {
 			OFile->close();
 			OFile->~basic_ofstream();
 
-			command = "fstcompile --isymbols=test" + to_string(I+1) + "/isyms.txt --osymbols=test" + to_string(I+1) + "/osyms.txt --keep_isymbols --keep_osymbols test" + to_string(I+1) + "/graph.fst test" + to_string(I+1) + "/binary.fst";
+			command = "fstcompile --isymbols=test" + to_string(I+1) + "/isyms.syms --osymbols=test" + to_string(I+1) + "/osyms.syms --keep_isymbols --keep_osymbols test" + to_string(I+1) + "/graph.fst test" + to_string(I+1) + "/binary.fst";
 			system(command.c_str());
 
 			command = "test" + to_string(I+1) + "/binary.fst";
 			fst = fst->Read(command);
+
+			command = "fstdraw --isymbols=test" + to_string(I+1) + "/isyms.syms --osymbols=test" + to_string(I+1) + "/osyms.syms -portrait test" + to_string(I+1) + "/binary.fst | dot -Tps >test" + to_string(I+1) + "/binary.ps";
+			system(command.c_str());
 		}
 		fst->~Fst();
 		fst = NULL;

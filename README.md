@@ -7,5 +7,6 @@ The code is split in the following way:
 - PSqSimul folder: Here is the code for the simulation.
 - PSqExp1 folder: Here is the code for the first experiment.
 - PSqExp2 folder: Here is the code for the second experiment.
-- PSqExp2 folder: Here is the code for the third experiment.
-- PSqExp2 folder: Here is the code for the fourth and last experiment.
+- PSqExp3 folder: Here is the code for the third experiment.
+- PSqExp4 folder: Here is the code for the fourth and last experiment.
+- PSqExpExtra folder: Here is the code for the extra experiment we performed.

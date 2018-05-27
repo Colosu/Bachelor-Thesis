@@ -18,7 +18,8 @@ using namespace std;
 #define MIN_STATES 25
 #define MAX_TRANSITIONS 5 //PER STATE
 #define MIN_TRANSITIONS 5 //PER STATE
-#define NCHARS 5
+#define NINPUTS 5
+#define NOUTPUTS 5
 #define MIN_CHAR 65
 
 
@@ -35,7 +36,7 @@ int main() {
 	int input = 0;
 	int output = 0;
 	fst::StdMutableFst* fst = NULL;
-	int* inputs = new int [NCHARS];
+	int* inputs = new int [NINPUTS];
 
 	for (int I = 0; I < NREP; I++) {
 
@@ -71,17 +72,17 @@ int main() {
 					*OFile << to_string(i) << endl;
 				} else {
 
-					for (int j = 0; j < NCHARS; j++) {
+					for (int j = 0; j < NINPUTS; j++) {
 						inputs[j] = 0;
 					}
 
 					input = 0;
 					output = 0;
 					while (input == 0 || inputs[input - MIN_CHAR] != 0) {
-						input = MIN_CHAR + (rand() % NCHARS);
+						input = MIN_CHAR + (rand() % NINPUTS);
 					}
 					inputs[input - MIN_CHAR] = 1;
-					output = MIN_CHAR + (rand() % NCHARS);
+					output = MIN_CHAR + (rand() % NOUTPUTS);
 
 					*OFile << to_string(i) << " " << to_string(i + 1) << " " << (char)input << " " << (char)output << endl;
 
@@ -94,10 +95,10 @@ int main() {
 							nextstate = rand() % nstates;
 						}
 						while (input == 0 || inputs[input - MIN_CHAR] != 0) {
-							input = MIN_CHAR + (rand() % NCHARS);
+							input = MIN_CHAR + (rand() % NINPUTS);
 						}
 						inputs[input - MIN_CHAR] = 1;
-						output = MIN_CHAR + (rand() % NCHARS);
+						output = MIN_CHAR + (rand() % NOUTPUTS);
 						*OFile << to_string(i) << " " << to_string(nextstate) << " " << (char)input << " " << (char)output << endl;
 					}
 				}

@@ -9,4 +9,4 @@ The code is split in the following way:
 - PSqExp2 folder: Here is the code for the second experiment.
 - PSqExp3 folder: Here is the code for the third experiment.
 - PSqExp4 folder: Here is the code for the fourth and last experiment.
-- PSqExpExtra folder: Here is the code for the extra experiment we performed.
+- PSqExpExtra folder: Here is the code for the scope experiment we performed.
